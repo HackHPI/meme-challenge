@@ -45,12 +45,16 @@ model Session {
 
 model User {
     id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
+    firstName     String
+    lastName      String
+    email         String    @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
+    events        Event[]
+    images        Image[]
+    memes         Meme[]
 }
 
 model VerificationToken {
@@ -59,4 +63,39 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Event {
+    id          String   @id @default(cuid())
+    name        String
+    createdBy   User     @relation(fields: [createdById], references: [id])
+    createdById String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    memes       Meme[]
+}
+
+model Image {
+    id           String   @id @default(cuid())
+    url          String
+    storageKey   String
+    blurHash     String
+    uploadedBy   User     @relation(fields: [uploadedById], references: [id])
+    uploadedById String
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+    meme         Meme?
+}
+
+model Meme {
+    id          String   @id @default(cuid())
+    image       Image    @relation(fields: [imageId], references: [id])
+    imageId     String   @unique
+    description String
+    event       Event    @relation(fields: [eventId], references: [id])
+    eventId     String
+    createdBy   User     @relation(fields: [createdById], references: [id])
+    createdById String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 }
