@@ -31,7 +31,7 @@ export const Sidebar = () => {
                 label={item.label}
                 icon={item.icon}
                 aria-current={
-                  location.pathname === item.path ? 'page' : undefined
+                  router.pathname === item.path ? 'page' : undefined
                 }
                 onClick={() => void router.push(item.path)}
               />

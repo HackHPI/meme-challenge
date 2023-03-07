@@ -1,5 +1,4 @@
-import { BsFire } from 'react-icons/bs';
-import { FiClock, FiImage } from 'react-icons/fi';
+import { FiFeather, FiImage } from 'react-icons/fi';
 import type { IconType } from 'react-icons/lib';
 
 interface NavItem {
@@ -10,18 +9,13 @@ interface NavItem {
 
 export const navItems: NavItem[] = [
   {
-    label: 'Newest Memes',
-    icon: FiClock,
-    path: '/memes/newest',
-  },
-  {
-    label: 'Trending Memes',
-    icon: BsFire,
-    path: '/memes/trending',
+    label: 'Memes',
+    icon: FiImage,
+    path: '/memes',
   },
   {
     label: 'My Memes',
-    icon: FiImage,
-    path: '/memes/my',
+    icon: FiFeather,
+    path: '/my-memes',
   },
 ];

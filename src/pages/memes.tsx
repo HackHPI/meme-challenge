@@ -1,12 +1,12 @@
 import { type NextPage } from 'next';
 import { AppLayout } from '~/components/layout';
 
-const TrendingMemesPage: NextPage = () => {
+const MemesPage: NextPage = () => {
   return (
     <AppLayout>
-      <h1>Trending Memes</h1>
+      <h1>Memes</h1>
     </AppLayout>
   );
 };
 
-export default TrendingMemesPage;
+export default MemesPage;

@@ -3,7 +3,10 @@ import { Navbar } from './navbar';
 import { Sidebar } from './sidebar';
 
 export const AppLayout = ({ children }: { children: React.ReactNode }) => {
-  const isDesktop = useBreakpointValue({ base: false, lg: true });
+  const isDesktop = useBreakpointValue(
+    { base: false, lg: true },
+    { fallback: 'lg' }
+  );
   return (
     <Flex
       as="section"
