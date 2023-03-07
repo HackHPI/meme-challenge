@@ -1,5 +1,7 @@
+import { Button } from '@chakra-ui/react';
 import { type NextPage } from 'next';
 import { signOut, useSession } from 'next-auth/react';
+import { AppLayout } from '~/components/layout';
 
 const MemesPage: NextPage = () => {
   const { data: session, status } = useSession();
@@ -8,13 +10,13 @@ const MemesPage: NextPage = () => {
   if (status === 'unauthenticated') return <p>Access Denied</p>;
 
   return (
-    <>
+    <AppLayout>
       <h1>Protected Page</h1>
       <p>Session: {JSON.stringify(session)}</p>
-      <button onClick={() => void signOut({ callbackUrl: '/' })}>
+      <Button onClick={() => void signOut({ callbackUrl: '/' })}>
         Sign out
-      </button>
-    </>
+      </Button>
+    </AppLayout>
   );
 };
 
