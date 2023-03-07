@@ -9,7 +9,9 @@ const Home: NextPage = () => {
         <div>
           <h1>HackHPI Meme Challenge</h1>
           <Button
-            onClick={() => void signIn('keycloak', { callbackUrl: '/memes' })}
+            onClick={() =>
+              void signIn('keycloak', { callbackUrl: '/memes/newest' })
+            }
           >
             Sign in
           </Button>

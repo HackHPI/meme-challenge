@@ -2,7 +2,7 @@ import { Avatar, Box, HStack, Text } from '@chakra-ui/react';
 
 interface UserProfileProps {
   name: string;
-  image: string;
+  image?: string;
   email: string;
 }
 
