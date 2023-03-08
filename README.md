@@ -21,10 +21,11 @@ After making sure that you have all the required dependencies take the following
 2. Clone this repository by running the command `git clone https://github.com/HackHPI/meme-challenge.git`.
 3. Open the project in your prefered code editor.
 4. In the project's root directory, run `yarn` to fetch all project dependencies.
-5. Run `yarn dev` (it's gonna fail we suck).
+5. In the `meme-challenge` directory, create a file `.env` identical to the [exemplary version](.env.example) (`.env.example`). This file must contain all necessary variable information about the environment the project should be run in. We will set the missing variables in a later step.
+6. Run `yarn dev` (it's gonna fail we suck).
    - If you care: The reason we do this is that it runs `docker compose up -d` in the background, starting the database. `-d` keeps it running even if `yarn dev` terminates
-6. Run `yarn prisma db push` to push the [prisma schema](/prisma/schema.prisma) to the database.
-7. Go to the [Keycloak Administration Console](http://localhost:28080/admin/master/console/) in your browser. Administrator credentials are `admin` for both user and pass.
+7. Run `yarn prisma db push` to push the [prisma schema](/prisma/schema.prisma) to the database.
+8. Go to the [Keycloak Administration Console](http://localhost:28080/admin/master/console/) in your browser. Administrator credentials are `admin` for both user and pass.
    - First, we need to set up a new realm:
      - Expand the dropdown menu in the top left and click on `Create Realm`.
      - You only need to provide a realm name here (e.g. `meme-challenge`)
@@ -41,11 +42,11 @@ After making sure that you have all the required dependencies take the following
      - You will immediately be redirected to a page on the newly created user. If not, navigate there through `Users` in the side bar and clicking on your user name.
      - Go to `Credentials` tab and set some password (e.g. `123`). Also, prefer deselecting the `Temporary` option, as it will prompt you to set a new password. This will be great for the deployed version but unnecessary for local development.
    - Lastly, we need to prepare something for further setup. When you start the project locally, it needs to know what realm and what client to use in the environment it was just started in. To save some time finding this information later on, navigate to `Clients`, click on yours, go to the `Credentials` tab and copy the `Client secret`. If you regenerate this, you need to update it in the code as well.
-8. In the `meme-challenge` directory, create a file `.env` identical to the [exemplary version](.env.example) (`.env.example`). This file must contain all necessary variable information about the environment the project should be run in. Scroll to the bottom of the file to find the empty variables that need to be set.
+9. In the `meme-challenge` directory, find the `.env` file you've created in step 5. Scroll to the bottom of the file to find the empty variables that need to be set.
    - You can paste the client secret you copied earlier already.
    - Put your client ID in the bottom (e.g. `meme-challenge-client`).
    - For `KEYCLOAK_ISSUER`, set it to `http://localhost:28080/realms/<your realm name>`, e.g. `http://localhost:28080/realms/meme-challenge`.
-9. Now you can run `yarn dev` to start the project locally and it will (should) actually work this time.
+10. Now you can run `yarn dev` to start the project locally and it will (should) actually work this time.
    - You can check out [the website](http://localhost:3000) under `localhost:3000` and sign in with the credentials you set when you created the user.
 
 Happy developing!
